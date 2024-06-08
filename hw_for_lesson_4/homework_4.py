@@ -1,4 +1,4 @@
-adwentures_of_tom_sawer = """\
+adventures_of_tom_sawyer = """\
 Tom gave up the brush with reluctance in his .... face but alacrity
 in his heart. And while
 the late steamer
@@ -27,8 +27,8 @@ separator = "=======\n"
 треба замінити кінець абзацу на пробіл .replace("\n", " ")"""
 
 print('Task 01')
-changed_str = adwentures_of_tom_sawer.replace("\n", " ")
-print(changed_str)
+adventures_of_tom_sawyer = adventures_of_tom_sawyer.replace("\n", " ")
+print(adventures_of_tom_sawyer)
 print(separator)
 
 # task 02 ==
@@ -36,37 +36,34 @@ print(separator)
 """
 
 print('Task 02')
-new_gap_str = changed_str.replace("....", " ")
-print(new_gap_str)
+adventures_of_tom_sawyer = adventures_of_tom_sawyer.replace("....", " ")
+print(adventures_of_tom_sawyer)
 print(separator)
-
 
 # task 03 ==
 """ Зробіть так, щоб у тексті було не більше одного пробілу між словами.
 """
 
 print('Task 03')
-text_with_one_gap = new_gap_str.replace("  ", "")
-print(text_with_one_gap)
+adventures_of_tom_sawyer = adventures_of_tom_sawyer.replace("  ", "")
+print(adventures_of_tom_sawyer)
 print(separator)
-
 
 # task 04
 """ Виведіть, скількі разів у тексті зустрічається літера "h"
 """
 
 print('Task 04')
-count_of_h = text_with_one_gap.count('h')
+count_of_h = adventures_of_tom_sawyer.count('h')
 print(f"The h letter occurs in the text {count_of_h} times.")
 print(separator)
-
 
 # task 05
 """ Виведіть, скільки слів у тексті починається з Великої літери?
 """
 
 print('Task 05')
-separated_text = text_with_one_gap.split()
+separated_text = adventures_of_tom_sawyer.split()
 print(separated_text)
 my_list = []
 for word in separated_text:
@@ -78,19 +75,14 @@ count_of_capitalize = len(my_list)
 print(f"Count of words which start with big letter are {count_of_capitalize}")
 print(separator)
 
-
 # task 06
 """ Виведіть позицію, на якій слово Tom зустрічається вдруге
 """
 
 print('Task 06')
-second_pos = []
-for word in my_list:
-    if word.startswith('Tom'):
-        second_pos.append(word)
-print(second_pos[1])
+first = adventures_of_tom_sawyer.find("Tom", 1)
+print(f"Position on which Tom word secondary started is {first}.")
 print(separator)
-
 
 # task 07
 """ Розділіть змінну adwentures_of_tom_sawer по кінцю речення.
@@ -98,10 +90,10 @@ print(separator)
 """
 
 print('Task 07')
-adwentures_of_tom_sawer_sentences = text_with_one_gap.split('. ')
-print(adwentures_of_tom_sawer_sentences)
-print(separator)
+adventures_of_tom_sawyer_sentences = adventures_of_tom_sawyer.split('. ')
+print(adventures_of_tom_sawyer_sentences)
 
+print(separator)
 
 # task 08
 """ Виведіть четверте речення з adwentures_of_tom_sawer_sentences.
@@ -109,20 +101,21 @@ print(separator)
 """
 
 print('Task 08')
-forth_sentence = adwentures_of_tom_sawer_sentences[3]
+forth_sentence = adventures_of_tom_sawyer_sentences[3]
 print(forth_sentence.lower())
 print(separator)
-
 
 # task 09
 """ Перевірте чи починається якесь речення з "By the time".
 """
 
 print('Task 09')
-if text_with_one_gap.startswith('By the time'):
-    print(f'The frase is in text')
-else:
-    print('There is not this frase')
+sep_text = adventures_of_tom_sawyer.split('. ')
+for frase in sep_text:
+    if frase.startswith("By the time"):
+        print(f'Yes in this text some sentence starts with "By the time"')
+    else:
+        pass
 print(separator)
 
 
@@ -130,7 +123,7 @@ print(separator)
 """ Виведіть кількість слів останнього речення з adwentures_of_tom_sawer_sentences.
 """
 print('Task 10')
-last_sentence = adwentures_of_tom_sawer_sentences[4]
+last_sentence = adventures_of_tom_sawyer_sentences[-1]
 separated_sentence = last_sentence.split()
 print(separated_sentence)
 print(f'There are {len(separated_sentence)} words.')

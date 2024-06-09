@@ -46,17 +46,21 @@ car_data = {
 }
 search_criteria = (2017, 1.6, 36000)
 
+# Sort by criteria
 new_dict = {}
 for car_id, auto_data in car_data.items():
     if auto_data[1] >= search_criteria[0] and auto_data[2] >= search_criteria[1] and auto_data[4] <= search_criteria[2]:
-        if len(new_dict) == 5:
-            break
         new_dict[car_id] = auto_data
+print(new_dict)
 
+# Sort by price
+new_sort = {}
 sorted_by_price = sorted(new_dict.items(), key=lambda x: x[1][4])
+print(dict(sorted_by_price))
 
-
+# Sort first five
 for car, data in sorted_by_price:
-    print(f"{car}: {data[4]}")
-
-
+    if len(new_sort) == 5:
+        break
+    new_sort[car] = data[4]
+print(new_sort)

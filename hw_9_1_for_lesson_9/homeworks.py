@@ -3,21 +3,20 @@
 # 9_1_1
 """Sum function for int-type symbols and show incorrect symbols (not int) in the list of numbers.
 """
+from typing import Any
 
 
-def catch_incorrect_symbols(lst):
+def revision_of_string_values(lst):
     # separating all elements by comma
     for item in lst:
-        item = item.split(',')
-
         try:
+            item = item.split(',')
             result = [int(el) for el in item]
-
+            print(sum(result))
         except ValueError as e:
             print(f'Can`t do this, because ERROR is : {e}')
-
-        else:
-            print(sum(result))
+            return False
+    return result
 
 
 # 9_1_2
@@ -48,10 +47,12 @@ def multiplication_table(number):
     multiplier = 1
 
     while multiplier <= number:
-        result = number * multiplier
-        print(str(number) + "x" + str(multiplier) + "=" + str(result))
-
+        res = number * multiplier
         multiplier += 1
+        if number <= 0:
+            return False
+        else:
+            return res
 
 
 # 9_1_5
@@ -60,9 +61,9 @@ def multiplication_table(number):
 
 
 def find_substring(first, second):
-    if second in first:
-        return first.find(second)
-    else:
-        return -1
+    return first.find(second)
 
 
+# str_1 = 'Hello World'
+# str_2 = 'Word'
+# print(find_substring(str_1, str_2))

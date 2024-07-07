@@ -25,7 +25,7 @@ def log_event(username: str, status: str):
     logging.basicConfig(
         filename='login_system.log',
         level=logging.INFO,
-        format='%(asctime)s - %(message)s - %(levelname)s'#,
+        format='%(asctime)s - %(message)s - %(levelname)s'  #,
         # force=True
     )
     logger = logging.getLogger("log_event")
@@ -39,29 +39,45 @@ def log_event(username: str, status: str):
         logger.error(log_message)
 
 
-def test_success_log():
-    log_event('John', 'kjgjgjhg')
-    assert True
+# @pytest.mark.parametrize('status', ['success'])
+# def test_log_param_success(status):
+#     log_event('John', status)
 
 
-@pytest.mark.parametrize('status', ['success', 'expired', 'other'])
-def test_log_param(status):
-    log_event('John', status)
+def test_log_success():
+    assert log_event('John', 'success')
 
 
-def test_success_log_2():
-    log_event("John", "success")
+def test_log_expired():
+    assert log_event('Natalka', 'expired')
+
+
+def test_log_error():
+    assert AssertionError
+    log_event('Vasyl', 'glvld')
+
+
+@pytest.mark.parametrize('name, status, expected', [("Jonn", "success", "Login event - Username: John, Status: success")])
+def test_success_log_2(name, status, expected):
+    assert log_event(name, status) == expected
     with open("login_system.log", "r") as f:
-        assert "Login event - Username: John, Status: success" in f.read()
+        assert f"Login event - Username: {name}, Status: {status}" in f.read()
+    # with open("login_system.log", "r") as f:
+    #     assert f"Login event - Username: {param_1}, Status: {param_2}" == expected in f.read()
 
-
-def test_expired_log():
-    log_event("John", "expired")
-    with open("login_system.log", "r") as f:
-        assert "Login event - Username: John, Status: expired" in f.read()
-
-
-def test_failed_log():
-    log_event("John", "failed")
-    with open("login_system.log", "r") as f:
-        assert "Login event - Username: John, Status: failed" in f.read()
+# def test_success_log_2():
+#     log_event("John", "success")
+#     with open("login_system.log", "r") as f:
+#         assert "Login event - Username: John, Status: success" in f.read()
+#
+#
+# def test_expired_log():
+#     log_event("John", "expired")
+#     with open("login_system.log", "r") as f:
+#         assert "Login event - Username: John, Status: expired" in f.read()
+#
+#
+# def test_failed_log():
+#     log_event("John", "failed")
+#     with open("login_system.log", "r") as f:
+#         assert "Login event - Username: John, Status: failed" in f.read()

@@ -44,24 +44,31 @@ def log_event(username: str, status: str):
 #     log_event('John', status)
 
 
-def test_log_success():
-    assert log_event('John', 'success')
+# def test_log_success():
+#     assert log_event('John', 'success')
+#
+#
+# def test_log_expired():
+#     assert log_event('Natalka', 'expired')
+#
+#
+# def test_log_error():
+#     assert AssertionError
+#     log_event('Vasyl', 'glvld')
+#
 
-
-def test_log_expired():
-    assert log_event('Natalka', 'expired')
-
-
-def test_log_error():
-    assert AssertionError
-    log_event('Vasyl', 'glvld')
-
-
-@pytest.mark.parametrize('name, status, expected', [("Jonn", "success", "Login event - Username: John, Status: success")])
+@pytest.mark.parametrize('name, status, expected', [("John", "success", "Login event - "
+                                                                        "Username: John, Status: success"),
+                                                    ("Lisa", "expired", "Login event - "
+                                                                        "Username: Lisa, Status: expired"),
+                                                    ("Joh", "succ", "Login event - Username: John, Status: success")],
+                                                    ids=['tes_1', 'test_2', 'test_3'])
 def test_success_log_2(name, status, expected):
-    assert log_event(name, status) == expected
+    log_event(name, status)
     with open("login_system.log", "r") as f:
-        assert f"Login event - Username: {name}, Status: {status}" in f.read()
+        log_rows = f.readlines()
+        assert expected in log_rows[-1]
+
     # with open("login_system.log", "r") as f:
     #     assert f"Login event - Username: {param_1}, Status: {param_2}" == expected in f.read()
 

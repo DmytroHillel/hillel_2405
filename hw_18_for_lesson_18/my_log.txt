@@ -1,0 +1,4 @@
+INFO:root:Calling EvenNumber with arguments:
+INFO:root:Positional args: (89,)
+INFO:root:Keyword args: {}
+INFO:root:EvenNumber returned: <__main__.EvenNumber object at 0x000001853A94B8C0>
